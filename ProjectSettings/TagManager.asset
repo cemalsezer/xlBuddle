@@ -7,6 +7,8 @@ TagManager:
   - water
   - sepet
   - fire
+  - eBottle
+  - fBottle
   layers:
   - Default
   - TransparentFX

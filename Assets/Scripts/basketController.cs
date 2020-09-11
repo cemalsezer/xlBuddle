@@ -4,12 +4,13 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class basketController : MonoBehaviour
 {
-   
 
-    
+
+
     public TextMeshProUGUI skor_txt;
 
     public TextMeshProUGUI skor1_txt;
@@ -21,7 +22,7 @@ public class basketController : MonoBehaviour
 
 
 
-    int puan = 0;
+    public int puan = 0;
     public float can = 100.0f;
 
     public UnityEngine.UI.Image canBari;
@@ -35,28 +36,24 @@ public class basketController : MonoBehaviour
     public AudioSource ses_dosyasi;
     public AudioClip water_sound;
     public AudioClip fire_sound;
+    public AudioClip eBottle;
+    public AudioClip fBottle;
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
         if (collision.gameObject.tag == "water")
         {
-            puan += 10;
-            Debug.Log(puan);
+            puan += 5;
+            Destroy(collision.gameObject);
+            //Debug.Log(puan);
             skor_txt.text = puan.ToString();
             skor1_txt.text = puan.ToString();
             GetComponent<AudioSource>().PlayOneShot(water_sound);
-           // ses_dosyasi.PlayOneShot(water_sound);
-
-            Destroy(collision.gameObject);
-
-
-            // float rast=Random.Range(-2.3f,2.30f);
 
 
 
-
-            //collision.gameObject.transform.position = new Vector3(rast, 6, -1);
         }
 
 
@@ -64,10 +61,10 @@ public class basketController : MonoBehaviour
 
         else if (collision.gameObject.tag == "fire")
         {
-            Debug.Log("ateş değdi");
+            // Debug.Log("ateş değdi");
             Destroy(collision.gameObject);
             GetComponent<AudioSource>().PlayOneShot(fire_sound);
-            guncelCan -= 10;
+            guncelCan -= 5;
             canBari.fillAmount = guncelCan / can;
 
 
@@ -78,36 +75,71 @@ public class basketController : MonoBehaviour
                 Time.timeScale = 0.0f;
             }
 
+        }
+        else if (collision.gameObject.tag == "eBottle")
+        {
+
+            Destroy(collision.gameObject);
+            guncelCan -= 5;
+            canBari.fillAmount = guncelCan / can;
+            GetComponent<AudioSource>().PlayOneShot(eBottle);
 
 
 
+            if (guncelCan <= 0)
+            {
+                panel.SetActive(true);
+                Time.timeScale = 0.0f;
+            }
 
         }
+        else if (collision.gameObject.tag == "fBottle")
+        {
+            Destroy(collision.gameObject);
+            puan += 5;
+            skor_txt.text = puan.ToString();
+            skor1_txt.text = puan.ToString();
+            GetComponent<AudioSource>().PlayOneShot(fBottle);
 
-
-
+        }
     }
 
-   
-
-    
 
 
 
- 
+
+
+
+
+    //else if(puan>=100)
+    //{
+
+    //}
+
+
+
+
+
+
+
+
+
+
 
 
     void Update()
     {
-                
+
+
+
         if (Input.GetKey(KeyCode.RightArrow))
 
         {
             transform.Translate(hiz * Time.deltaTime, 0, 0);
 
         }
-     
-    
+
+
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -118,4 +150,5 @@ public class basketController : MonoBehaviour
 
 
     }
+
 }

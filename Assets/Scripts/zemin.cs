@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class zemin : MonoBehaviour
 {
-     float can = 100.0f;
-    float guncelCan = 100.0f;
+    // float can = 100.0f;
+    //float guncelCan = 100.0f;
 
     public Image canBari;
     public GameObject panel;
@@ -59,12 +59,18 @@ public class zemin : MonoBehaviour
 
             //collision.gameObject.transform.position = new Vector3(ras, 6, -1);
 
+         }
 
-
-
-
-
-
+        else if(collision.gameObject.tag =="eBottle")
+        {
+            Destroy(collision.gameObject);
         }
+
+        else if (collision.gameObject.tag == "fBottle")
+        {
+            Destroy(collision.gameObject);
+        }
+
+
     }
 }

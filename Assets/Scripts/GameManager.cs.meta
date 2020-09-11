@@ -3,7 +3,12 @@ guid: 22f1ae9cdb57c644dbfcecf0a39eecd8
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bsc: {instanceID: 0}
+  - water: {fileID: 4562115857201504391, guid: d7bf2066c0c29f649b14435eb7f7cc76, type: 3}
+  - fire: {fileID: 7183250854965481775, guid: e31b72b790e253d40bfc35cf3e031d98, type: 3}
+  - emptyBottle: {fileID: 5847943230502764137, guid: f27eac8f34dd58148a044feb7144e621, type: 3}
+  - fullBottle: {fileID: 5718694071283166807, guid: b2d2ad060b435404a8c0cf8a5de209a4, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
